@@ -1,0 +1,37 @@
+{
+  "name": "alkemy-node",
+  "version": "1.0.0",
+  "description": "challenge backend - node",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index",
+    "dev": "nodemon index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/santieb/alkemy-node.git"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "sequelize"
+  ],
+  "author": "santieb",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/santieb/alkemy-node/issues"
+  },
+  "homepage": "https://github.com/santieb/alkemy-node#readme",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mariadb": "^3.0.0",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.20.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
