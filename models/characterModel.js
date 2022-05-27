@@ -5,10 +5,10 @@ const Characters = sequelize.define('Characters', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
-    autoIncrement: true,
+    autoIncrement: true
   },
   image: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING
   },
   name: {
     type: DataTypes.STRING
@@ -23,7 +23,7 @@ const Characters = sequelize.define('Characters', {
     type: DataTypes.STRING
   }
 }, {
-  timestamps: false,
+  timestamps: false
 })
 
 Characters.sync()

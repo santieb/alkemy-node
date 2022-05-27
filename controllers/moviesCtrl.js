@@ -3,11 +3,11 @@ import Movie from '../models/movieModel.js'
 const moviesCtrl = {
   getMovies: async (req, res) => {
     try {
-    const movies = await Movie.findAll({
-      attributes: ['image', 'title', 'creationDate']
-    })
+      const movies = await Movie.findAll({
+        attributes: ['image', 'title', 'creationDate']
+      })
 
-    res.status(200).json({ msg: movies })
+      res.status(200).json({ msg: movies })
     } catch (error) {
       return res.status(500).json({ msg: error.message })
     }
@@ -28,12 +28,12 @@ const moviesCtrl = {
   },
   createMovie: async (req, res) => {
     try {
-      const { image, title , creationDate, rating } = req.body
+      const { image, title, creationDate, rating } = req.body
 
       if (!image || !title || !creationDate || !rating)
         return res.status(400).json({ msg: 'Please fill in all fields' })
 
-      const movie = await new Movie({ image, title , creationDate, rating })
+      const movie = await new Movie({ image, title, creationDate, rating })
       await movie.save()
 
       res.status(200).json({ msg: 'Movie created successfully' })
@@ -44,7 +44,7 @@ const moviesCtrl = {
   updateMovie: async (req, res) => {
     try {
       const { id } = req.params
-      const { image, title , creationDate, rating } = req.body
+      const { image, title, creationDate, rating } = req.body
 
       if (!image || !title || !creationDate || !rating)
         return res.status(400).json({ msg: 'Please fill in all fields' })
@@ -65,7 +65,6 @@ const moviesCtrl = {
     } catch (error) {
       return res.status(500).json({ msg: error.message })
     }
-
   },
   deleteMovie: async (req, res) => {
     try {
@@ -75,7 +74,7 @@ const moviesCtrl = {
 
       if (!movie)
         return res.status(400).json({ msg: 'Movie not found' })
-  
+
       await movie.destroy()
 
       res.status(200).json({ msg: 'Movie deleted successfully' })

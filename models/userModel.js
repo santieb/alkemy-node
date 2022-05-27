@@ -5,17 +5,17 @@ const Users = sequelize.define('User', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
-    autoIncrement: true,
+    autoIncrement: true
   },
   email: {
     type: DataTypes.STRING,
     allowNull: false
-  },  
+  },
   password: {
     type: DataTypes.STRING
   }
 }, {
-  timestamps: false,
+  timestamps: false
 })
 
 Users.sync()

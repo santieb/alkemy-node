@@ -5,7 +5,7 @@ const Movie = sequelize.define('Movie', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
-    autoIncrement: true,
+    autoIncrement: true
   },
   image: {
     type: DataTypes.STRING,
@@ -19,9 +19,9 @@ const Movie = sequelize.define('Movie', {
   },
   rating: {
     type: DataTypes.INTEGER
-  },
+  }
 }, {
-  timestamps: false,
+  timestamps: false
 })
 
 Movie.sync()

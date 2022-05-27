@@ -3,11 +3,11 @@ import Character from '../models/characterModel.js'
 const charactersCtrl = {
   getCharacters: async (req, res) => {
     try {
-    const characters = await Character.findAll({
-      attributes: ['image', 'name']
-    })
+      const characters = await Character.findAll({
+        attributes: ['image', 'name']
+      })
 
-    res.status(200).json({ msg: characters })
+      res.status(200).json({ msg: characters })
     } catch (error) {
       return res.status(500).json({ msg: error.message })
     }
@@ -28,12 +28,12 @@ const charactersCtrl = {
   },
   createCharacter: async (req, res) => {
     try {
-      const { image, name , age, weight, history } = req.body
+      const { image, name, age, weight, history } = req.body
 
       if (!image || !name || !age || !weight || !history)
         return res.status(400).json({ msg: 'Please fill in all fields' })
 
-      const character = await new Character({ image, name , age, weight, history })
+      const character = await new Character({ image, name, age, weight, history })
       await character.save()
 
       res.status(200).json({ msg: 'Character created successfully' })
@@ -44,9 +44,9 @@ const charactersCtrl = {
   updateCharacter: async (req, res) => {
     try {
       const { id } = req.params
-      const { image, name , age, weight, history } = req.body
+      const { image, name, age, weight, history } = req.body
 
-      if (!image && !name && !age && !weight && !history) 
+      if (!image && !name && !age && !weight && !history)
         return res.status(400).json({ msg: 'Please fill in all fields' })
 
       const character = await Character.findByPk(id)
@@ -66,17 +66,16 @@ const charactersCtrl = {
     } catch (error) {
       return res.status(500).json({ msg: error.message })
     }
-
   },
   deleteCharacter: async (req, res) => {
     try {
       const { id } = req.params
 
       const character = await Character.findByPk(id)
-  
+
       if (!character)
         return res.status(400).json({ msg: 'Character not found' })
-  
+
       await character.destroy()
 
       res.status(200).json({ msg: 'Character deleted successfully' })

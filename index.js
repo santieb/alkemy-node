@@ -1,12 +1,16 @@
 import dotenv from 'dotenv'
 import express from 'express'
-import sequelize from './config/database.js'
+
+import { swaggerDocs, swaggerUI } from './config/swagger.js'
 
 const app = express()
-dotenv.config()
-
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
+dotenv.config()
+
+app.use('/api-docs',
+  swaggerUI.serve,
+  swaggerUI.setup(swaggerDocs))
 
 import usersRoutes from './routes/usersRoutes.js'
 app.use('/api/auth', usersRoutes)

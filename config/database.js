@@ -2,7 +2,7 @@ import { Sequelize } from 'sequelize'
 
 const sequelize = new Sequelize('alkemy-challenge', 'root', '', {
   host: 'localhost',
-  dialect: 'mysql',
+  dialect: 'mysql'
 })
 
 try {

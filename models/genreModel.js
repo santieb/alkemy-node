@@ -5,14 +5,14 @@ const Genre = sequelize.define('Genre', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
-    autoIncrement: true,
+    autoIncrement: true
   },
   image: {
     type: DataTypes.STRING,
     allowNull: false
   }
 }, {
-  timestamps: false,
+  timestamps: false
 })
 
 Genre.sync()
