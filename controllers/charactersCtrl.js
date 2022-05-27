@@ -1,9 +1,9 @@
-import Characters from '../models/characterModel.js'
+import Character from '../models/characterModel.js'
 
 const charactersCtrl = {
   getCharacters: async (req, res) => {
     try {
-    const characters = await Characters.findAll({
+    const characters = await Character.findAll({
       attributes: ['image', 'name']
     })
 
@@ -16,7 +16,7 @@ const charactersCtrl = {
     try {
       const { id } = req.params
 
-      const character = await Characters.findByPk(id)
+      const character = await Character.findByPk(id)
 
       if (!character)
         return res.status(400).json({ msg: 'Character not found' })
@@ -33,8 +33,8 @@ const charactersCtrl = {
       if (!image || !name || !age || !weight || !history)
         return res.status(400).json({ msg: 'Please fill in all fields' })
 
-      const user = await new Characters({ image, name , age, weight, history })
-      await user.save()
+      const character = await new Character({ image, name , age, weight, history })
+      await character.save()
 
       res.status(200).json({ msg: 'Character created successfully' })
     } catch (error) {
@@ -49,7 +49,7 @@ const charactersCtrl = {
       if (!image && !name && !age && !weight && !history) 
         return res.status(400).json({ msg: 'Please fill in all fields' })
 
-      const character = await Characters.findByPk(id)
+      const character = await Character.findByPk(id)
 
       if (!character)
         return res.status(400).json({ msg: 'Character not found' })
@@ -72,7 +72,7 @@ const charactersCtrl = {
     try {
       const { id } = req.params
 
-      const character = await Characters.findByPk(id)
+      const character = await Character.findByPk(id)
   
       if (!character)
         return res.status(400).json({ msg: 'Character not found' })
