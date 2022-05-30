@@ -1,22 +1,26 @@
-import dotenv from 'dotenv'
-dotenv.config()
-import sgMail from '@sendgrid/mail'
-sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+import nodemailer from 'nodemailer'
 
-const sendMail = async (to) => {
-  try {
-    const msg = {
-      to,
-      from: 'santiagonicolasbarreto@gmail.com',
-      subject: 'Prueba',
-      html: '<h1><strong>Prueba</strong></h1>'
+const sendEmail = async email => {
+  const transport = nodemailer.createTransport({
+    host: process.env.EMAIL_HOST,
+    port: process.env.EMAIL_HOST,
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS
     }
-    await sgMail.send(msg)
-    console.log('Message sent successfully')
-  } catch (err) {
-    console.log(err)
-    if (err.response) console.log(err.response)
-  }
+  })
+
+  await transport.sendMail({
+    from: '"Welcome to the Disney API!" <santieb@gmail.com>',
+    to: email,
+    subject: `Bienvenido! ${email} `,
+    text: 'Ya puedes explorar el mundo de Disney!',
+    html: `
+    <p>Welcome to the my challenge with NodeJS</p>
+    <p>Hope that the application is to your liking</p>
+    <a href="https://github.com/santieb">santieb</a>
+    `
+  })
 }
 
-export default sendMail
+export default sendEmail

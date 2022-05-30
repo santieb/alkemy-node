@@ -33,6 +33,8 @@ EXPIRESIN=60*60*60*24
 SENDGRID_API_KEY=sendgridkey
 ```
 
+* Puedes utilizar para las variables de configuración de envío de email de **Mailtrap** te las generará automáticamente y te será más fácil hacer pruebas.
+
 **2 - Ejecución**
 
 Para iniciar mi proyecto de manera local, tienes que usar `npm run start` y para iniciar el test usa `npm run test`
