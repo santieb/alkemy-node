@@ -1,4 +1,4 @@
-import { Movie, CharacterMovie } from '../models/index.js'
+import { Movie, CharacterMovie, Character } from '../models/index.js'
 
 const moviesCtrl = {
   getMovies: async (req, res) => {
@@ -38,21 +38,6 @@ const moviesCtrl = {
           }
         ]
       })
-
-      if (!movie)
-        return res.status(400).json({ msg: 'movie not found' })
-
-      res.status(200).json({ msg: movie })
-    } catch (error) {
-      return res.status(500).json({ msg: error.message })
-    }
-  },
-  addCharacters: async (req, res) => {
-    try {
-      const { id } = req.params
-      const { characters } = req.body
-
-      const movie = await Movie.findByPk(id)
 
       if (!movie)
         return res.status(400).json({ msg: 'movie not found' })
@@ -116,6 +101,50 @@ const moviesCtrl = {
       res.status(200).json({ msg: 'Movie deleted successfully' })
     } catch (error) {
       return res.status(500).json({ msg: error.message })
+    }
+  },
+  addCharacter: async (req, res) => {
+    try {
+      const { id } = req.params
+      const { characterId } = req.body
+
+      const characterMovie = await CharacterMovie.findOne({
+        where: {
+          movieId: id,
+          characterId
+        }
+      })
+
+      if (characterMovie)
+        return res.status(400).json({ msg: 'Character already added' })
+
+      await CharacterMovie.create({ movieId: id, characterId })
+
+      res.status(200).json({ msg: 'Characters added successfully' })
+    } catch (error) {
+      return res.status(500).json({ msg: 'Check the sent data' })
+    }
+  },
+  unassignCharacter: async (req, res) => {
+    try {
+      const { id } = req.params
+      const { characterId } = req.body
+
+      const characterMovie = await CharacterMovie.findOne({
+        where: {
+          movieId: id,
+          characterId
+        }
+      })
+
+      if (!characterMovie)
+        return res.status(400).json({ msg: 'The character is not added' })
+
+      await characterMovie.destroy()
+
+      res.status(200).json({ msg: 'Characters deleted successfully' })
+    } catch (error) {
+      return res.status(500).json({ msg: 'Check the sent data' })
     }
   }
 }

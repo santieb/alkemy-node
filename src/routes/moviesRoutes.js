@@ -2,6 +2,7 @@ import express from 'express'
 const router = express.Router()
 
 import auth from '../middlewares/auth.js'
+
 import moviesCtrl from '../controllers/moviesCtrl.js'
 
 router.route('/')
@@ -10,8 +11,11 @@ router.route('/')
 
 router.route('/:id')
   .get(auth, moviesCtrl.getMovie)
-  .post(auth, moviesCtrl.addCharacters)
   .put(auth, moviesCtrl.updateMovie)
   .delete(auth, moviesCtrl.deleteMovie)
+
+router.route('/characters/:id')
+  .post(auth, moviesCtrl.addCharacter)
+  .delete(auth, moviesCtrl.unassignCharacter)
 
 export default router
