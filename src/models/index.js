@@ -84,7 +84,7 @@ Genre.hasMany(Movie, { foreignKey: 'genreId' })
   })
 
   await CharacterMovie.create({
-    characterId: 2,
+    characterId: 3,
     movieId: 2
   })
 })()

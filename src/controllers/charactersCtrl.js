@@ -8,13 +8,24 @@ const charactersCtrl = {
       const query = {}
       if (name) query.name = name
       if (age) query.age = age
-      if (movies) query.movies = movies
       if (weight) query.weight = weight
 
       const characters = await Character.findAll({
         where: query,
         attributes: ['image', 'name']
       })
+
+      if (movies) {
+        const characterMovie = await CharacterMovie.findAll({
+          where: { movieId: movies }
+        })
+
+        const charactersWithMovies = await Character.findAll({
+          where: { id: characterMovie.map(character => character.characterId) },
+          attributes: ['image', 'name']
+        })
+        return res.status(200).json({ msg: charactersWithMovies })
+      }
 
       if (!characters || characters.length === 0)
         return res.status(404).json({ msg: 'characters not found' })
