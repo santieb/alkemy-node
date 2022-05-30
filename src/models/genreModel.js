@@ -7,6 +7,9 @@ const Genre = sequelize.define('Genre', {
     primaryKey: true,
     autoIncrement: true
   },
+  name: {
+    type: DataTypes.STRING
+  },
   image: {
     type: DataTypes.STRING,
     allowNull: false
@@ -14,7 +17,5 @@ const Genre = sequelize.define('Genre', {
 }, {
   timestamps: false
 })
-
-Genre.sync()
 
 export default Genre

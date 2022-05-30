@@ -26,6 +26,4 @@ const Characters = sequelize.define('Characters', {
   timestamps: false
 })
 
-Characters.sync()
-
 export default Characters

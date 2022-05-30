@@ -10,6 +10,7 @@ router.route('/')
 
 router.route('/:id')
   .get(auth, moviesCtrl.getMovie)
+  .post(auth, moviesCtrl.addCharacters)
   .put(auth, moviesCtrl.updateMovie)
   .delete(auth, moviesCtrl.deleteMovie)
 

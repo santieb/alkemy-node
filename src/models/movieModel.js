@@ -24,6 +24,4 @@ const Movie = sequelize.define('Movie', {
   timestamps: false
 })
 
-Movie.sync()
-
 export default Movie

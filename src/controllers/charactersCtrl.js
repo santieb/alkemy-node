@@ -1,11 +1,23 @@
-import Character from '../models/characterModel.js'
+import { Character, CharacterMovie } from '../models/index.js'
 
 const charactersCtrl = {
   getCharacters: async (req, res) => {
     try {
+      const { name, age, movies, weight } = req.query
+
+      const query = {}
+      if (name) query.name = name
+      if (age) query.age = age
+      if (movies) query.movies = movies
+      if (weight) query.weight = weight
+
       const characters = await Character.findAll({
+        where: query,
         attributes: ['image', 'name']
       })
+
+      if (!characters)
+        return res.status(400).json({ msg: 'characters not found' })
 
       res.status(200).json({ msg: characters })
     } catch (error) {
@@ -16,7 +28,14 @@ const charactersCtrl = {
     try {
       const { id } = req.params
 
-      const character = await Character.findByPk(id)
+      const character = await Character.findByPk(id, {
+        include: [
+          {
+            model: CharacterMovie,
+            attributes: ['movieId']
+          }
+        ]
+      })
 
       if (!character)
         return res.status(400).json({ msg: 'Character not found' })
