@@ -3,10 +3,12 @@ import { Movie, CharacterMovie } from '../models/index.js'
 const moviesCtrl = {
   getMovies: async (req, res) => {
     try {
-      const { title, genre, order } = req.query
+      let { title, genre, order } = req.query
 
-      if (order !== 'ASC' && order !== 'DESC')
+      if (order && (order !== 'ASC' && order !== 'DESC'))
         return res.status(400).json({ msg: 'Invalid order' })
+
+      if (!order) order = 'ASC'
 
       const query = {}
       if (title) query.title = title
