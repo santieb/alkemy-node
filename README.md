@@ -30,7 +30,10 @@ MYSQL_PASS=pass
 MYSQL_DB_NAME=namedb
 SECRET=secretpass
 EXPIRESIN=60*60*60*24
-SENDGRID_API_KEY=sendgridkey
+EMAIL_USER=user
+EMAIL_PASS=pass
+EMAIL_HOST=host
+EMAIL_PORT=port
 ```
 
 * Puedes utilizar para las variables de configuración de envío de email de **Mailtrap** te las generará automáticamente y te será más fácil hacer pruebas.
