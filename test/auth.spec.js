@@ -1,10 +1,11 @@
-
+import dotenv from 'dotenv'
+dotenv.config()
 import chai, { expect } from 'chai'
 import { describe, it } from 'mocha'
 import chaiHttp from 'chai-http'
 
 chai.use(chaiHttp)
-const url = 'http://localhost:3001/api'
+const url = `http://localhost:${process.env.PORT}/api`
 
 describe('Register: ', () => {
   it('This email already exists', (done) => {

@@ -16,7 +16,7 @@ const charactersCtrl = {
         attributes: ['image', 'name']
       })
 
-      if (!characters)
+      if (!characters || characters.length === 0)
         return res.status(404).json({ msg: 'characters not found' })
 
       res.status(200).json({ msg: characters })
@@ -50,7 +50,7 @@ const charactersCtrl = {
       const { image, name, age, weight, history } = req.body
 
       if (!image || !name || !age || !weight || !history)
-        return res.status(404).json({ msg: 'Please fill in all fields' })
+        return res.status(400).json({ msg: 'Please fill in all fields' })
 
       const character = await new Character({ image, name, age, weight, history })
       await character.save()

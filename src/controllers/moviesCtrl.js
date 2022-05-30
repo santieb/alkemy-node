@@ -21,7 +21,7 @@ const moviesCtrl = {
       })
 
       if (!movies || movies.length === 0)
-        return res.status(400).json({ msg: 'characters not found' })
+        return res.status(400).json({ msg: 'movies not found' })
 
       res.status(200).json({ msg: movies })
     } catch (error) {
@@ -69,7 +69,7 @@ const moviesCtrl = {
       const { id } = req.params
       const { image, title, creationDate, rating } = req.body
 
-      if (!image || !title || !creationDate || !rating)
+      if (!image && !title && !creationDate && !rating)
         return res.status(400).json({ msg: 'Please fill in all fields' })
 
       const movie = await Movie.findByPk(id)
@@ -110,6 +110,9 @@ const moviesCtrl = {
       const { id } = req.params
       const { characterId } = req.body
 
+      if (!characterId)
+        return res.status(400).json({ msg: 'Please fill in all fields' })
+
       const characterMovie = await CharacterMovie.findOne({
         where: {
           movieId: id,
@@ -131,6 +134,9 @@ const moviesCtrl = {
     try {
       const { id } = req.params
       const { characterId } = req.body
+
+      if (!characterId)
+        return res.status(400).json({ msg: 'Please fill in all fields' })
 
       const characterMovie = await CharacterMovie.findOne({
         where: {
