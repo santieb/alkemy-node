@@ -1,4 +1,4 @@
-import { Movie, CharacterMovie, Character } from '../models/index.js'
+import { Movie, CharacterMovie } from '../models/index.js'
 
 const moviesCtrl = {
   getMovies: async (req, res) => {
@@ -18,7 +18,7 @@ const moviesCtrl = {
         order: [['creationDate', order]]
       })
 
-      if (!movies)
+      if (!movies || movies.length === 0)
         return res.status(400).json({ msg: 'characters not found' })
 
       res.status(200).json({ msg: movies })
@@ -73,7 +73,7 @@ const moviesCtrl = {
       const movie = await Movie.findByPk(id)
 
       if (!movie)
-        return res.status(400).json({ msg: 'Movie not found' })
+        return res.status(404).json({ msg: 'Movie not found' })
 
       movie.image = image || movie.image
       movie.title = title || movie.title
@@ -94,7 +94,7 @@ const moviesCtrl = {
       const movie = await Movie.findByPk(id)
 
       if (!movie)
-        return res.status(400).json({ msg: 'Movie not found' })
+        return res.status(404).json({ msg: 'Movie not found' })
 
       await movie.destroy()
 

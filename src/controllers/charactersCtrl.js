@@ -17,7 +17,7 @@ const charactersCtrl = {
       })
 
       if (!characters)
-        return res.status(400).json({ msg: 'characters not found' })
+        return res.status(404).json({ msg: 'characters not found' })
 
       res.status(200).json({ msg: characters })
     } catch (error) {
@@ -38,7 +38,7 @@ const charactersCtrl = {
       })
 
       if (!character)
-        return res.status(400).json({ msg: 'Character not found' })
+        return res.status(404).json({ msg: 'Character not found' })
 
       res.status(200).json({ msg: character })
     } catch (error) {
@@ -50,7 +50,7 @@ const charactersCtrl = {
       const { image, name, age, weight, history } = req.body
 
       if (!image || !name || !age || !weight || !history)
-        return res.status(400).json({ msg: 'Please fill in all fields' })
+        return res.status(404).json({ msg: 'Please fill in all fields' })
 
       const character = await new Character({ image, name, age, weight, history })
       await character.save()
@@ -71,7 +71,7 @@ const charactersCtrl = {
       const character = await Character.findByPk(id)
 
       if (!character)
-        return res.status(400).json({ msg: 'Character not found' })
+        return res.status(404).json({ msg: 'Character not found' })
 
       character.image = image || character.image
       character.name = name || character.name
@@ -93,7 +93,7 @@ const charactersCtrl = {
       const character = await Character.findByPk(id)
 
       if (!character)
-        return res.status(400).json({ msg: 'Character not found' })
+        return res.status(404).json({ msg: 'Character not found' })
 
       await character.destroy()
 

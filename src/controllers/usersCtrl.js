@@ -38,7 +38,7 @@ const usersCtrl = {
       const { email, password } = req.body
 
       if (!email || !password)
-        return res.status(401).json({ msg: 'Please fill in all fields' })
+        return res.status(400).json({ msg: 'Please fill in all fields' })
 
       const user = await User.findOne({ where: { email } })
       if (!user)
