@@ -36,7 +36,7 @@ EMAIL_HOST=host
 EMAIL_PORT=port
 ```
 
-* Puedes utilizar para las variables de configuración de envío de email de **Mailtrap** te las generará automáticamente y te será más fácil hacer pruebas.
+* Puedes utilizar para las variables de configuración de envío de email de **Mailtrap** te las generará automáticamente.
 
 **2 - Ejecución**
 
