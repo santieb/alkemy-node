@@ -36,7 +36,7 @@ EMAIL_HOST=host
 EMAIL_PORT=port
 ```
 
-* Puedes utilizar para las variables de configuración de envío de email de **Mailtrap** te las generará automáticamente.
+* Para las variables de configuración de envío de email se recomienda utilizar **Mailtrap** ya que las genera automáticamente
 
 **2 - Ejecución**
 
@@ -49,4 +49,4 @@ https://documenter.getpostman.com/view/16916322/Uz5CKd2i
 
 * **Santiago Barreto** - [santieb](https://gitlab.com/santieb) 
 
-Challenge provided by [Alkemy](https://www.alkemy.org/)
+Challenge propuesto por [Alkemy](https://www.alkemy.org/)
